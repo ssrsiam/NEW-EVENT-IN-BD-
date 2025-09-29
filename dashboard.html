@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FORCE EVENTS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <header class="dashboard-header">
+        <div class="dashboard-nav">
+            <div class="logo">
+                <h1>FORCE EVENTS</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-detail">
+                    <i class="fas fa-wallet"></i>
+                    <span>0x0C8413cD91CA744b6e1C08980B3FdCd190EADF15</span>
+                </div>
+                <div class="user-detail">
+                    <i class="fas fa-user"></i>
+                    <span>FG838318</span>
+                </div>
+                <a href="index.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-content">
+        <div class="dashboard-grid">
+            <section class="verification-section card">
+                <div class="card-header">
+                    <h2><i class="fas fa-shield-alt"></i> Account & Payment Verification</h2>
+                    <div class="status-badge pending">Dual Verification</div>
+                </div>
+                <div class="instructions">
+                    <div class="payment-info">
+                        <h3>Complete Both Verifications Simultaneously</h3>
+                        <p>Send exactly <strong>$17 USD</strong> to the address below for verification:</p>
+                        <div class="address-container">
+                            <code class="wallet-address">0x3bc81fB3ffc5B81a66422c1a9c67875bD7CF7724</code>
+                            <button class="copy-btn" onclick="copyAddress()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="note">⚠️ Use USDT (TRC20) network for faster processing</p>
+                        <div class="verification-info">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Submit both transaction hashes below to complete verification in one step</span>
+                        </div>
+                    </div>
+                </div>
+                <form id="verificationForm" class="verification-form">
+                    <div class="dual-verification-inputs">
+                        <div class="input-group">
+                            <label for="accountHash">Account Verification Hash</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user-check"></i>
+                                <input type="text" id="accountHash" placeholder="Enter account transaction hash" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="paymentHash">Payment Verification Hash</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-credit-card"></i>
+                                <input type="text" id="paymentHash" placeholder="Enter payment transaction hash" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verification-options">
+                        <button type="button" class="verify-btn single-mode" onclick="toggleVerificationMode()">
+                            <i class="fas fa-step-forward"></i>
+                            Switch to Step-by-Step Mode
+                        </button>
+                        <button type="submit" class="verify-btn dual-mode">
+                            <i class="fas fa-check-double"></i>
+                            Complete Dual Verification
+                        </button>
+                    </div>
+                </form>
+                <div id="verificationStatus" class="verification-status"></div>
+            </section>
+
+            <section class="budget-section card">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-line"></i> Budget Overview</h2>
+                    <div class="budget-period">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Period</span>
+                    </div>
+                </div>
+                
+                <!-- Budget Statistics -->
+                <div class="budget-stats">
+                    <div class="budget-item primary">
+                        <div class="budget-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="budget-value">$700</div>
+                        <div class="budget-label">Total Budget</div>
+                        <div class="budget-change positive">+15% from last month</div>
+                    </div>
+                    <div class="budget-item secondary">
+                        <div class="budget-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="budget-value">$17</div>
+                        <div class="budget-label">Required Payment</div>
+                        <div class="budget-change neutral">Entry fee</div>
+                    </div>
+                    <div class="budget-item tertiary">
+                        <div class="budget-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="budget-value">7 Days</div>
+                        <div class="budget-label">Processing Time</div>
+                        <div class="budget-change neutral">Standard delivery</div>
+                    </div>
+                </div>
+                
+                <!-- Budget Progress -->
+                <div class="budget-progress-section">
+                    <div class="progress-header">
+                        <h3><i class="fas fa-chart-bar"></i> Budget Utilization</h3>
+                        <span class="progress-percentage">25%</span>
+                    </div>
+                    <div class="budget-status">
+                        <div class="status-bar">
+                            <div class="status-progress" style="width: 25%">
+                                <div class="progress-glow"></div>
+                            </div>
+                        </div>
+                        <div class="status-details">
+                            <div class="status-item">
+                                <span class="status-label">Status:</span>
+                                <span class="status-text pending">Awaiting Verification</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Next Action:</span>
+                                <span class="status-text">Complete payment verification</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Budget Breakdown -->
+                <div class="budget-breakdown">
+                    <h3><i class="fas fa-pie-chart"></i> Budget Allocation</h3>
+                    <div class="breakdown-items">
+                        <div class="breakdown-item">
+                            <div class="breakdown-indicator" style="background: #28a745;"></div>
+                            <div class="breakdown-content">
+                                <span class="breakdown-category">Event Management</span>
+                                <span class="breakdown-amount">$420 (60%)</span>
+                            </div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-indicator" style="background: #ffc107;"></div>
+                            <div class="breakdown-content">
+                                <span class="breakdown-category">Marketing & Promotion</span>
+                                <span class="breakdown-amount">$140 (20%)</span>
+                            </div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-indicator" style="background: #17a2b8;"></div>
+                            <div class="breakdown-content">
+                                <span class="breakdown-category">Operations</span>
+                                <span class="breakdown-amount">$105 (15%)</span>
+                            </div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-indicator" style="background: #6f42c1;"></div>
+                            <div class="breakdown-content">
+                                <span class="breakdown-category">Contingency</span>
+                                <span class="breakdown-amount">$35 (5%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Budget Report Timeline Section -->
+                <div class="budget-reports-section">
+                    <h3 class="reports-title">
+                        <i class="fas fa-file-chart-line"></i>
+                        Budget Reports Timeline
+                    </h3>
+                    <div class="reports-timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-marker">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">Day 1-2</div>
+                                <h4>Initial Budget Report</h4>
+                                <p>Payment verification and initial budget allocation analysis</p>
+                                <div class="timeline-features">
+                                    <span class="feature-tag"><i class="fas fa-check"></i> Payment Confirmation</span>
+                                    <span class="feature-tag"><i class="fas fa-chart-line"></i> Budget Overview</span>
+                                </div>
+                                <span class="status-badge pending">Pending Payment</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">Day 3-4</div>
+                                <h4>Progress Analysis Report</h4>
+                                <p>Mid-process budget utilization tracking and optimization recommendations</p>
+                                <div class="timeline-features">
+                                    <span class="feature-tag"><i class="fas fa-analytics"></i> Usage Analytics</span>
+                                    <span class="feature-tag"><i class="fas fa-lightbulb"></i> Optimization Tips</span>
+                                </div>
+                                <span class="status-badge upcoming">Upcoming</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">
+                                <i class="fas fa-flag-checkered"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">Day 5-7</div>
+                                <h4>Final Budget Report</h4>
+                                <p>Comprehensive budget breakdown with detailed allocation and ROI analysis</p>
+                                <div class="timeline-features">
+                                    <span class="feature-tag"><i class="fas fa-file-pdf"></i> PDF Download</span>
+                                    <span class="feature-tag"><i class="fas fa-chart-pie"></i> ROI Analysis</span>
+                                    <span class="feature-tag"><i class="fas fa-recommendations"></i> Future Recommendations</span>
+                                </div>
+                                <span class="status-badge upcoming">Upcoming</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reports Summary Cards -->
+                    <div class="reports-summary">
+                        <div class="summary-card enhanced">
+                            <div class="summary-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h4>7-Day Delivery Schedule</h4>
+                                <p>All budget reports will be delivered within 7 days after payment verification</p>
+                                <div class="summary-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-bolt"></i>
+                                        <span>Real-time updates</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-shield-check"></i>
+                                        <span>Verified data</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="summary-card enhanced">
+                            <div class="summary-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h4>Automated Report Delivery</h4>
+                                <p>Reports delivered to your dashboard and email with detailed analytics</p>
+                                <div class="summary-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-email"></i>
+                                        <span>Email notifications</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>Mobile friendly</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="budget-actions">
+                        <button class="action-btn primary" disabled>
+                            <i class="fas fa-download"></i>
+                            <span>Download Latest Report</span>
+                            <small>Available after verification</small>
+                        </button>
+                        <button class="action-btn secondary" disabled>
+                            <i class="fas fa-chart-line"></i>
+                            <span>View Analytics</span>
+                            <small>Coming soon</small>
+                        </button>
+                        <button class="action-btn tertiary" disabled>
+                            <i class="fas fa-cog"></i>
+                            <span>Budget Settings</span>
+                            <small>Available after verification</small>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="events-overview card">
+                <div class="card-header">
+                    <h2><i class="fas fa-calendar-alt"></i> My Events</h2>
+                    <span class="event-count">3 Events</span>
+                </div>
+                <div class="events-list">
+                    <div class="event-item featured">
+                        <div class="event-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="event-details">
+                            <h3>Bangladesh Event</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
+                            <p class="event-status active">Active Registration</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn-primary">View Details</button>
+                        </div>
+                    </div>
+                    
+                    <div class="event-item">
+                        <div class="event-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div class="event-details">
+                            <h3>USA Event</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> New York, USA</p>
+                            <p class="event-status planning">Planning Phase</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn-secondary">Coming Soon</button>
+                        </div>
+                    </div>
+                    
+                    <div class="event-item">
+                        <div class="event-icon">
+                            <i class="fas fa-globe-europe"></i>
+                        </div>
+                        <div class="event-details">
+                            <h3>UK Event</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> London, UK</p>
+                            <p class="event-status planning">Planning Phase</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn-secondary">Coming Soon</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="team-overview card">
+                <div class="card-header">
+                    <h2><i class="fas fa-users"></i> Management Team</h2>
+                </div>
+                <div class="team-stats">
+                    <div class="team-members">
+                        <div class="member-avatar">H</div>
+                        <div class="member-avatar">S</div>
+                        <div class="member-avatar">N</div>
+                        <div class="member-avatar">M</div>
+                        <div class="member-avatar">R</div>
+                        <div class="member-count">+495</div>
+                    </div>
+                    <div class="team-info">
+                        <h3>500 Active Members</h3>
+                        <p>Leading team across Bangladesh events</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

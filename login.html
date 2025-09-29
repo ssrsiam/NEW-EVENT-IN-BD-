@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FORCE EVENTS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="login-page">
+    <div class="login-wrapper">
+        <a href="index.html" class="back-to-home">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+        <div class="login-container">
+            <div class="login-header">
+                <h1>FORCE EVENTS</h1>
+                <p class="login-subtitle">Access your exclusive event dashboard</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="walletAddress">Wallet Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-wallet"></i>
+                        <input type="text" id="walletAddress" placeholder="0xDdD089...Df71" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="accountId">Account ID</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="accountId" placeholder="FG327588" required>
+                    </div>
+                </div>
+                <button type="submit" class="login-submit">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Access Dashboard
+                </button>
+            </form>
+            <div class="login-footer">
+                <p>Secure access to exclusive events worldwide</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>
