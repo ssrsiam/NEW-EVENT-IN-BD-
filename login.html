@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - FORCE EVENTS</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/partner-styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body class="login-page">
@@ -13,34 +14,79 @@
             <i class="fas fa-arrow-left"></i>
             Back to Home
         </a>
-        <div class="login-container">
+
+
+        <!-- Partner Program Section -->
+        <div class="login-container partner-program-container">
             <div class="login-header">
-                <h1>FORCE EVENTS</h1>
-                <p class="login-subtitle">Access your exclusive event dashboard</p>
+                <h2>Partner Program</h2>
+                <p class="login-subtitle">Join the partner program for exclusive benefits</p>
             </div>
-            <form id="loginForm" class="login-form">
+            <form id="partnerForm" class="login-form">
                 <div class="form-group">
-                    <label for="walletAddress">Wallet Address</label>
+                    <label for="partnerAddress">Wallet Address</label>
                     <div class="input-with-icon">
                         <i class="fas fa-wallet"></i>
-                        <input type="text" id="walletAddress" placeholder="0xDdD089...Df71" required>
+                        <input type="text" id="partnerAddress" placeholder="0x..." required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="accountId">Account ID</label>
+                    <label for="partnerSelect">Select Partner</label>
                     <div class="input-with-icon">
-                        <i class="fas fa-user"></i>
-                        <input type="text" id="accountId" placeholder="FG327588" required>
+                        <i class="fas fa-user-friends"></i>
+                        <select id="partnerSelect" required>
+                            <option value="">-- Select Partner --</option>
+                            <option value="MD HAMIM ISLAM">MD HAMIM ISLAM</option>
+                            <option value="MS NIKITA ISLAM">MS NIKITA ISLAM</option>
+                            <option value="MS MIFTA ISLAM">MS MIFTA ISLAM</option>
+                            <option value="MD REDWAN ISLAM">MD REDWAN ISLAM</option>
+                        </select>
                     </div>
                 </div>
-                <button type="submit" class="login-submit">
-                    <i class="fas fa-sign-in-alt"></i>
-                    Access Dashboard
+                <div class="deposit-section">
+                    <h3>Deposit Information</h3>
+                    <div class="deposit-amount">
+                        <p>Deposit Amount: <span id="depositAmount">17</span> USD (USDT)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="promoCode">Promo Code</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-tag"></i>
+                            <input type="text" id="promoCode" placeholder="Enter code (optional)">
+                        </div>
+                        <button type="button" id="verifyPromoBtn" class="verify-btn">
+                            <i class="fas fa-check-circle"></i> Verify Code
+                        </button>
+                        <p id="promoStatus" class="promo-status"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Deposit Address</label>
+                        <div class="address-container">
+                            <code class="wallet-address">0x6060cdafb57bf98daaccbe84b271fe0d8dd96dd5</code>
+                            <button type="button" class="copy-btn" onclick="copyPartnerAddress()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="note">⚠️ Use USDT (BEP20) network</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="transactionHash">Transaction Hash</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-receipt"></i>
+                            <input type="text" id="transactionHash" placeholder="Enter transaction hash" required>
+                        </div>
+                    </div>
+                    <button type="button" id="verifyHashBtn" class="verify-btn">
+                        <i class="fas fa-check-circle"></i> Verify Transaction
+                    </button>
+                    </button>
+                </div>
+                <button type="submit" class="partner-submit">
+                    <i class="fas fa-handshake"></i>
+                    Join Partner Program
                 </button>
             </form>
-            <div class="login-footer">
-                <p>Secure access to exclusive events worldwide</p>
-            </div>
+            <div id="partnerVerificationStatus" class="verification-status"></div>
         </div>
     </div>
 
